@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Snake — Reverse Friendly Edition</title>
+  <title>Snake — Classic Style</title>
   <style>
     body {
       margin: 0;
@@ -153,22 +153,11 @@
 
     // Controls
     document.addEventListener("keydown", e => {
-      let newDx = dx, newDy = dy;
-      if (e.key === "ArrowUp") { newDx = 0; newDy = -gridSize; }
-      else if (e.key === "ArrowDown") { newDx = 0; newDy = gridSize; }
-      else if (e.key === "ArrowLeft") { newDx = -gridSize; newDy = 0; }
-      else if (e.key === "ArrowRight") { newDx = gridSize; newDy = 0; }
-
-      // Detect reverse (going opposite of current)
-      if (snake.length > 1 && newDx === -dx && newDy === -dy) {
-        // Reverse snake array instead of ending the game
-        snake.reverse();
-        dx = newDx;
-        dy = newDy;
-      } else {
-        dx = newDx;
-        dy = newDy;
-      }
+      if (e.key === "ArrowUp" && dy === 0) { dx = 0; dy = -gridSize; }
+      else if (e.key === "ArrowDown" && dy === 0) { dx = 0; dy = gridSize; }
+      else if (e.key === "ArrowLeft" && dx === 0) { dx = -gridSize; dy = 0; }
+      else if (e.key === "ArrowRight" && dx === 0) { dx = gridSize; dy = 0; }
+      // If opposite direction is pressed, nothing happens
     });
   </script>
 </body>
